@@ -15,6 +15,10 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.get("/", (req, res) => {
+  res.status(200);
+});
+
 app.use("/client", clientRouter);
 app.use("/admin", adminRouter);
 app.use("/coach", coachRouter);
