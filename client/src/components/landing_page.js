@@ -48,7 +48,7 @@ function LandingPage() {
         {" "}
         sign up now
       </a>
-      <img id="footer" src={footer} alt="footer"></img>
+      <img id="footer" src={footer} alt="main-footer"></img>
     </div>
   );
 }
