@@ -1,7 +1,7 @@
 import "./App.css";
 import "./fonts/LeagueSpartan-VariableFont_wght.ttf";
 import LandingPage from "./components/landing_page.js";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import CoachLogin from "./components/coach-login";
 import Login from "./components/login";
 import Register from "./components/register";
