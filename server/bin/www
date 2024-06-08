@@ -7,6 +7,7 @@
 const http = require("http");
 const mongoose = require("mongoose");
 const app = require("../app");
+const connectMongoDB = require("../config/db");
 
 /**
  * Get port from environment and store in Express.
@@ -64,13 +65,7 @@ server.listen(port);
 /**
  * Connect to MongoDB
  */
-mongoose.connect(process.env.URI, {
-  useNewUrlParser: true,
-});
-const connection = mongoose.connection;
-connection.once("open", () => {
-  console.log("MongoDB database connection established successfully");
-});
+connectMongoDB();
 
 server.on("error", onError);
 server.on("listening", onListening);
