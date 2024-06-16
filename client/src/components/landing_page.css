@@ -1,9 +1,26 @@
-body, html {
+:root {
+  --font-family: "League Spartan", sans-serif;
+  --background-color-light: #4d5399;
+  --background-color-dark: #1a1a2e;
+  --text-color-primary-light: #c9b2ca;
+  --text-color-primary-dark: #f1f1f1;
+  --text-color-secondary-light: #f1f1f1;
+  --text-color-secondary-dark: #c9b2ca;
+  --button-border-color-light: #71a7f1;
+  --button-border-color-dark: #4d5399;
+  --button-bg-color-light: rgba(113, 167, 241, 0.51);
+  --button-bg-color-dark: rgba(77, 83, 153, 0.51);
+  --button-hover-bg-color-light: rgba(70, 107, 160, 0.51);
+  --button-hover-bg-color-dark: rgba(113, 167, 241, 0.51);
+}
+
+body,
+html {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
-  font-family: "League Spartan", sans-serif;
+  font-family: var(--font-family);
 }
 
 div.first {
@@ -11,7 +28,7 @@ div.first {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  background-color: #4d5399;
+  background-color: var(--background-color-light);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -20,6 +37,10 @@ div.first {
   overflow: auto;
   padding: 20px;
   box-sizing: border-box;
+}
+
+div.first.dark {
+  background-color: var(--background-color-dark);
 }
 
 @font-face {
@@ -34,8 +55,12 @@ div.first {
   line-height: 1.2;
   text-align: center;
   letter-spacing: 0.03em;
-  color: #c9b2ca;
+  color: var(--text-color-primary-light);
   margin: 20px 0;
+}
+
+div.first.dark #GH {
+  color: var(--text-color-primary-dark);
 }
 
 #slogan {
@@ -44,8 +69,12 @@ div.first {
   line-height: 1.2;
   text-align: center;
   letter-spacing: 0.03em;
-  color: #f1f1f1;
+  color: var(--text-color-secondary-light);
   margin-bottom: 30px;
+}
+
+div.first.dark #slogan {
+  color: var(--text-color-secondary-dark);
 }
 
 .buttons-container {
@@ -64,15 +93,16 @@ button {
   padding: 0;
 }
 
-#clientsignup, #coachlogin {
+#clientsignup,
+#coachlogin {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 45%;
   max-width: 35%;
-  border: solid 5px #71a7f1;
-  background: rgba(113, 167, 241, 0.51);
+  border: solid 5px var(--button-border-color-light);
+  background: var(--button-bg-color-light);
   box-shadow: 0px 8px 21px rgba(0, 0, 0, 0.25);
   border-radius: 46px;
   text-decoration: none;
@@ -83,11 +113,25 @@ button {
   padding: 20px;
 }
 
-#clientsignup:hover, #coachlogin:hover {
-  background: rgba(70, 107, 160, 0.51);
+div.first.dark #clientsignup,
+div.first.dark #coachlogin {
+  border-color: var(--button-border-color-dark);
+  background: var(--button-bg-color-dark);
+  color: var(--text-color-secondary-dark);
 }
 
-#lc, #lcc {
+#clientsignup:hover,
+#coachlogin:hover {
+  background: var(--button-hover-bg-color-light);
+}
+
+div.first.dark #clientsignup:hover,
+div.first.dark #coachlogin:hover {
+  background: var(--button-hover-bg-color-dark);
+}
+
+#lc,
+#lcc {
   width: 60px;
   margin-bottom: 10px;
 }
@@ -101,10 +145,18 @@ button {
   right: 20px;
 }
 
+div.first.dark #admin {
+  color: var(--text-color-secondary-dark);
+}
+
 #abt {
   font-size: 3.5vw;
-  color: #c9b2ca;
+  color: var(--text-color-primary-light);
   margin: 40px 0;
+}
+
+div.first.dark #abt {
+  color: var(--text-color-primary-dark);
 }
 
 #sb {
@@ -121,22 +173,86 @@ button {
   margin-bottom: 40px;
 }
 
+div.first.dark .info {
+  color: var(--text-color-secondary-dark);
+}
+
 #sj {
   font-size: 3.5vw;
-  color: #71a7f1;
+  color: var(--button-border-color-light);
   margin-bottom: 40px;
+}
+
+div.first.dark #sj {
+  color: var(--background-color-light);
 }
 
 #cta {
   font-size: 3vw;
-  color: #c9b2ca;
+  color: var(--text-color-primary-light);
   text-decoration: underline;
   margin-bottom: 40px;
+}
+
+div.first.dark #cta {
+  color: var(--text-color-primary-dark);
 }
 
 #footer {
   width: 100%;
   margin-top: auto;
+}
+
+/* Dark mode toggle slider */
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
 }
 
 /* Media Queries */
@@ -149,24 +265,27 @@ button {
     font-size: 4vw;
   }
 
-  #clientsignup, #coachlogin {
+  #clientsignup,
+  #coachlogin {
     font-size: 3vw;
     max-width: 70%;
   }
 
-  #abt, #sj {
-    font-size: 5vw;
+  #abt,
+  #sj {
+    font-size: 8vw;
   }
 
   .info {
-    font-size: 2.5vw;
+    font-size: 4vw;
   }
 
   #cta {
     font-size: 4vw;
   }
 
-  #lc, #lcc {
+  #lc,
+  #lcc {
     width: 40px;
   }
 
@@ -184,12 +303,14 @@ button {
     font-size: 5vw;
   }
 
-  #clientsignup, #coachlogin {
+  #clientsignup,
+  #coachlogin {
     font-size: 4vw;
     max-width: 90%;
   }
 
-  #abt, #sj {
+  #abt,
+  #sj {
     font-size: 7vw;
   }
 
@@ -201,7 +322,8 @@ button {
     font-size: 5vw;
   }
 
-  #lc, #lcc {
+  #lc,
+  #lcc {
     width: 30px;
   }
 

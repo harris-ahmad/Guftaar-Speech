@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import lc from "../images/landing_client.svg";
 import lcc from "../images/landing_coach.svg";
@@ -8,14 +8,25 @@ import "../fonts/LeagueSpartan-VariableFont_wght.ttf";
 import "./landing_page.css";
 
 const LandingPage = () => {
+  const [darkMode, setDarkMode] = useState(false);
   const navigate = useNavigate();
 
   const navigateTo = (path) => () => {
     navigate(path);
   };
 
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+
   return (
-    <div className="first">
+    <div className={darkMode ? "first dark" : "first"}>
+      <div className="theme-toggle">
+        <label className="switch">
+          <input type="checkbox" onChange={toggleDarkMode} checked={darkMode} />
+          <span className="slider round"></span>
+        </label>
+      </div>
       <h1 id="GH">Guftaar</h1>
       <h2 id="slogan">Speech Made Easy</h2>
       <div className="buttons-container">
@@ -28,7 +39,6 @@ const LandingPage = () => {
           I'm a coach that offers services
         </button>
       </div>
-      {/* <a id="admin" href="/admin/login">Admin Login</a> */}
       <h1 id="abt">About Us</h1>
       <img id="sb" src={sb} alt="speech bubble" />
       <p className="info">
