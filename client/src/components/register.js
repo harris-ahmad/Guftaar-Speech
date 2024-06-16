@@ -6,7 +6,7 @@ import * as yup from "yup";
 import axios from "axios";
 import reg from "../images/register.svg";
 import Alert from "./Alert";
-import "./form_content.css";
+import "./form_content_register.css";
 
 // Validation schema
 const schema = yup.object().shape({
