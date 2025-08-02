@@ -9,25 +9,6 @@ const Feedback = require("../../models/meeting");
 
 const router = new express.Router();
 
-const verifyJWT = (req, res, next) => {
-  const token = req.headers["accesstoken"];
-  if (!token) {
-    res.json({ isLoggedIn: false, message: "No token provided" });
-  } else {
-    jwt.verify(token, "harris123", (err, decoded) => {
-      // TODO: Replace with env variable
-      if (err) {
-        return res.json({ isLoggedIn: false, message: "Invalid token" });
-      } else {
-        req.user = {};
-        req.userId = decoded.id;
-        req.user.username = decoded.username;
-        next();
-      }
-    });
-  }
-};
-
 router.get("/", (req, res) => {
   res.send("Client route");
 });
